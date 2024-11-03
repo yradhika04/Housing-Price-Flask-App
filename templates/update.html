@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title> Housing Price </title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1> Housing Price Prediction </h1>
+    <div class="form">
+        <form action="/update/{{task.id}}" method="POST">
+            <input type="number" name="area" id="area" value="{{task.area}}" required>
+            <input type="number" name="bedrooms" id="bedrooms" value="{{task.bedrooms}}" required>
+            <input type="number" name="bathrooms" id="bathrooms" value="{{task.bathrooms}}" required>
+            <input type="number" name="parking" id="parking" value="{{task.parking}}" required>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
+{% endblock %}

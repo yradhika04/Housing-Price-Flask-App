@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title> Housing Price </title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1> Housing Price Prediction </h1>
+
+    {% if tasks|length < 1 %}
+    <h4> There are no predictions yet. Create one below! </h4>
+    {% else %}
+    <table class="center">
+        <tr>
+            <th> Area (m2) </th>
+            <th> Bedrooms (#) </th>
+            <th> Bathrooms (#) </th>
+            <th> Parking (#) </th>
+            <th> Prediction ($) </th>
+            <th> Date </th>
+            <th> Actions </th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td> {{task.area}} </td>
+                <td> {{task.bedrooms}} </td>
+                <td> {{task.bathrooms}} </td>
+                <td> {{task.parking}} </td>
+                <td> {{task.prediction}} </td>
+                <td> {{task.date_created.date()}} </td>
+                <td>
+                    <a href="/delete/{{task.id}}"> Delete </a>
+                    <br>
+                    <a href="/update/{{task.id}}"> Update </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <div class="form">
+        <form action="/" method="POST">
+            <input type="number" name="area" id="area" placeholder="Area (m2)" required>
+            <input type="number" name="bedrooms" id="bedrooms" placeholder="Bedrooms (#)" required>
+            <input type="number" name="bathrooms" id="bathrooms" placeholder="Bathrooms (#)">
+            <input type="number" name="parking" id="parking" placeholder="Parking (#)">
+            <input type="submit" value="Predict price">
+        </form>
+    </div>
+</div>
+{% endblock %}
