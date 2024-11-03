@@ -8,7 +8,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # initialize db
-python -c "from app import db, app; with app.app_context(): db.create_all()"
+python -c "from app import db, app; app.app_context().push(); db.create_all()"
 
 # start the application
 python app.py

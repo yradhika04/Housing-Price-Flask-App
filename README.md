@@ -29,4 +29,3 @@ from Kaggle released under the CC0: Public Domain license.
 for future use. 
 4. The flask app uses this saved model to predict house prices based on the input values of the user. 
 5. The app supports all CRUD operations. 
-
