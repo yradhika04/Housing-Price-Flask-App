@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import joblib
+import pandas as pd
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
@@ -10,10 +11,8 @@ db = SQLAlchemy(app)
 
 def return_prediction(model, input_json):
 
-    input_data = [[input_json[k] for k in input_json.keys()]]
+    input_data = pd.DataFrame([[input_json[k] for k in input_json.keys()]], columns=["area", "bedrooms", "bathrooms", "parking"])
     prediction = model.predict(input_data)[0]
-    # prediction = np.exp(prediction) - 1
-    # prediction = float("{:.4f}".format(prediction))
 
     return prediction
 
